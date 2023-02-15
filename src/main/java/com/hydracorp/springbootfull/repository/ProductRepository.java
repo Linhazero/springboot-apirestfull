@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.hydracorp.springbootfull.model.Product;
+import com.hydracorp.springbootfull.model.exceptions.ResourceNotFoundException;
 
 @Repository
 public class ProductRepository {
@@ -42,7 +43,7 @@ public class ProductRepository {
 		//Encontra produto na lista
 		Optional<Product> produtoEncontrado = findById(product.getId());
 		if(produtoEncontrado.isEmpty()) {
-			throw new InputMismatchException("No product!");
+			throw new ResourceNotFoundException("No product!");
 		}
 		//Eu tenho que remover o produto antigo da lista
 		 delete(product.getId());
